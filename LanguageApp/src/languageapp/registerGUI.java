@@ -246,7 +246,7 @@ public class registerGUI extends javax.swing.JFrame {
            pst.setString(5, FirstNamefield.getText());
            pst.setString(6, LastNamefield.getText());
        
-           
+           //
           
            pst.execute();
            System.out.println("Registeration Succesful");
