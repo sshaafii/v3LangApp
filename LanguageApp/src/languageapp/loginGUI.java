@@ -214,14 +214,23 @@ public class loginGUI extends javax.swing.JFrame {
                     userGUI userPanel = new userGUI();
                     // add this user to the tempuser
                     try{
-                        String sqlQuery = "INSERT INTO TempUser VALUES (null,?);";
+                        
+                        String sqlQuery = "INSERT INTO TempUser VALUES (null,?,?);";
                         pst = con.prepareStatement(sqlQuery);
                         pst.setString(1, userField.getText());
+                        pst.setString(2, rs.getString("user_ID"));
                         pst.execute();
                         System.out.println("Added to the tempUser table");
                         }catch(Exception e){
                            System.out.println(e);
+                    }finally{
+                try{
+                    rs.close();
+                    pst.close();
+                    con.close();
+                } catch(Exception e){
                     }
+                }
                     userPanel.setVisible(true);
                     this.dispose();
                 }
@@ -237,7 +246,14 @@ public class loginGUI extends javax.swing.JFrame {
         }catch(Exception e){
         
         
-        }
+        }finally{
+                try{
+                    rs.close();
+                    pst.close();
+                    con.close();
+                } catch(Exception e){
+                    }
+                }
         
         }
         

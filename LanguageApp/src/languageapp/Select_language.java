@@ -1,22 +1,32 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package languageapp;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.*;
 /**
  *
- * @author shaaf
+ * @author MrCra
  */
-public class userGUI extends javax.swing.JFrame {
+public class Select_language extends javax.swing.JFrame {
 
     /**
-     * Creates new form userGUI
+     * Creates new form Select_language
      */
-    private String name;
-    public userGUI() {
+        Connection con = null;
+        PreparedStatement pst = null;
+        PreparedStatement pst2 = null;
+        PreparedStatement pst3 = null;
+        PreparedStatement pst4 = null;
+        ResultSet rs = null;
+        ResultSet rs1 = null;
+    public Select_language() {
         initComponents();
- 
+       
     }
 
     /**
@@ -36,14 +46,11 @@ public class userGUI extends javax.swing.JFrame {
         Levels = new javax.swing.JButton();
         lanugage = new javax.swing.JButton();
         Credits = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        Progress = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        username_label = new javax.swing.JLabel();
+        language_selector = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         Background.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -117,7 +124,7 @@ public class userGUI extends javax.swing.JFrame {
                 .addComponent(lanugage, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Credits, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,41 +140,37 @@ public class userGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel4.setBackground(new java.awt.Color(232, 93, 157));
+        jPanel1.setBackground(new java.awt.Color(245, 66, 194));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel2.setLabelFor(jPanel4);
-        jLabel2.setText("Profile");
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        jLabel2.setText("Select language");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        Progress.setBackground(new java.awt.Color(4, 168, 248));
-        Progress.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        Progress.setText("My Progress");
-        Progress.addActionListener(new java.awt.event.ActionListener() {
+        language_selector.setBackground(new java.awt.Color(153, 255, 255));
+        language_selector.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        language_selector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Spanish", " " }));
+        language_selector.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        language_selector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ProgressActionPerformed(evt);
+                language_selectorActionPerformed(evt);
             }
         });
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sign-out-icon.png"))); // NOI18N
-
-        username_label.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        username_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
         Background.setLayout(BackgroundLayout);
@@ -178,31 +181,22 @@ public class userGUI extends javax.swing.JFrame {
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Progress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(56, 56, 56)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jLabel3))
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(username_label, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(113, 113, 113)
+                        .addComponent(language_selector, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(username_label, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Progress, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                .addComponent(language_selector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(126, 126, 126)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -220,38 +214,124 @@ public class userGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ProgressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProgressActionPerformed
-        // TODO add your handling code here:
-        ProgressGui progress = new ProgressGui();
-        progress.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_ProgressActionPerformed
-
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        
+
         userGUI user = new userGUI();
         user.setVisible(true);
+        javax.swing.JLabel usernameLabel = user.getUsernameLabel();
         this.dispose();
-        
+
     }//GEN-LAST:event_HomeActionPerformed
 
     private void LevelsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LevelsActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_LevelsActionPerformed
 
     private void lanugageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lanugageActionPerformed
         // TODO add your handling code here:
-        Select_language languagePage = new Select_language();
-        languagePage.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_lanugageActionPerformed
 
     private void CreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CreditsActionPerformed
-    
+
+    private void language_selectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_language_selectorActionPerformed
+        // TODO add your handling code here:
+        if (language_selector.getSelectedItem().toString().equals("Spanish")){
+            con = DbConnection.connectionDB();
+            try{
+                
+                String user_id = "";
+                String Temp_user_id = "";
+
+                String language_id = "";
+                try{
+                
+                   // get user from temp table
+                String sql ="SELECT user_ID from TempUser ";
+                pst = con.prepareStatement(sql);
+                rs = pst.executeQuery();
+                Temp_user_id = rs.getObject(1).toString();
+                
+                
+                
+                }catch(Exception e){ System.out.println(e);
+                
+                }finally{
+                try{
+                 
+                    
+                    
+                } catch(Exception e){
+                    }
+                }
+            try{    
+                //find the userid from users table
+                String sql_2 ="SELECT user_ID from User WHERE user_id = ?";
+                pst2 = con.prepareStatement(sql_2);
+                pst2.setString(1,rs.getObject(1).toString());
+                 user_id = rs.getObject(1).toString();
+            }catch(Exception e){
+                 System.out.println(e);
+            }finally{
+                try{
+                   pst.close();
+                    pst2.close();
+                    
+                } catch(Exception e){
+                    }
+                }
+           try{
+                        
+                  // get the lanuage id from language table
+                String sqlquery_2 ="SELECT language_ID from Language ";
+                pst3 = con.prepareStatement(sqlquery_2);
+                rs = pst3.executeQuery();
+                 language_id = rs.getObject(1).toString();
+           }catch(Exception e) {
+               
+           }finally{
+                try{
+                  
+                    pst3.close();
+                    
+                } catch(Exception e){
+                    }
+                }
+            try{
+               String sqlQuery = "INSERT INTO History  VALUES (null,null,null,null,null,null,?,?);";
+                
+                pst4 = con.prepareStatement(sqlQuery);
+                pst4.setString(1, language_id);
+                pst4.setString(2, user_id);         
+                pst4.execute();
+                System.out.println("Registeration Succesful");
+            }catch(Exception e){
+                 System.out.println(e);
+            }finally{
+                try{
+                    rs.close();
+                    pst4.close();
+                    
+                } catch(Exception e){
+                    }
+                }
+                
+            }catch(Exception e){
+                System.out.println(e);
+            }finally{
+                try{
+                    rs.close();
+
+                   
+                } catch(Exception e){
+                    }
+                }
+        }
+    }//GEN-LAST:event_language_selectorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -269,39 +349,35 @@ public class userGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(userGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Select_language.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(userGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Select_language.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(userGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Select_language.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(userGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Select_language.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new userGUI().setVisible(true);
+                new Select_language().setVisible(true);
             }
         });
     }
-    javax.swing.JLabel getUsernameLabel(){
-        return username_label;
-    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JButton Credits;
     private javax.swing.JButton Home;
     private javax.swing.JButton Levels;
-    private javax.swing.JButton Progress;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JComboBox<String> language_selector;
     private javax.swing.JButton lanugage;
-    private javax.swing.JLabel username_label;
     // End of variables declaration//GEN-END:variables
 }
