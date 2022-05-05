@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author sh44fi
@@ -234,25 +235,30 @@ public class registerGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         // user user = new user(userField.getText(),emailField.getText(),userTypeField.getText(),FirstNamefield.getText(),LastNamefield.getText(),passField.getText());
-       
-       con = DbConnection.connectionDB();
-       try{
-          String sql = "INSERT INTO User VALUES (null,?,?,?,?,?,?,?,null,null);";
-           pst = con.prepareStatement(sql);
-           pst.setString(1, userTypeField.getText());
-           pst.setString(2, userField.getText()); 
-           pst.setString(3, passField.getText());
-           pst.setString(4, emailField.getText());
-           pst.setString(5, FirstNamefield.getText());
-           pst.setString(6, LastNamefield.getText());
-       
-           //
-          
-           pst.execute();
-           System.out.println("Registeration Succesful");
-       }catch(Exception e){
-           System.out.println(e);
-       }
+       if("".equals(userTypeField.getText()) || "".equals(userField.getText()) || "".equals(passField.getText())|| "".equals(emailField.getText()) 
+                    || "".equals(FirstNamefield.getText()) || "".equals(LastNamefield.getText()) ){
+           
+           JOptionPane.showMessageDialog(null, "Password or username or email or firstname or lastname or usertype   is empty");
+       }else{
+        con = DbConnection.connectionDB();
+        try{
+           String sql = "INSERT INTO User VALUES (null,?,?,?,?,?,?,?,null,null);";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, userTypeField.getText());
+            pst.setString(2, userField.getText()); 
+            pst.setString(3, passField.getText());
+            pst.setString(4, emailField.getText());
+            pst.setString(5, FirstNamefield.getText());
+            pst.setString(6, LastNamefield.getText());
+
+            //
+
+            pst.execute();
+            System.out.println("Registeration Succesful");
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
         
     }//GEN-LAST:event_loginBtnActionPerformed
 
