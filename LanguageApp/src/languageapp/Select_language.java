@@ -307,13 +307,18 @@ public class Select_language extends javax.swing.JFrame {
                 pst4.setString(1, language_id);
                 pst4.setString(2, user_id);         
                 pst4.execute();
+                SearchBy nextTask = new SearchBy();
+                nextTask.setVisible(true);
+                this.dispose();
                 System.out.println("Registeration Succesful");
+                
             }catch(Exception e){
                  System.out.println(e);
             }finally{
                 try{
                     rs.close();
                     pst4.close();
+                    
                     
                 } catch(Exception e){
                     }
