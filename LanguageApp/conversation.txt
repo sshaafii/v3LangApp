@@ -1,0 +1,9 @@
+Hi there. Do you have a table for 2?
+Good evening. Do you have a reservation with us?
+I'm sorry I don't. 
+I'm afraid we're very busy tonight so there are no free tables. Would you like to wait or come back later?
+How long is the wait for a table? I am very hungry. 
+It is about one hour. I'm sorry about that. Would you like to order your food for takeaway instead? 
+Yes please. I will have two burgers and two portions of fries. Oh and two large drinks. Thank you very much.
+No problem. Your food should be here soon. Have a nice evening!
+You too. 
