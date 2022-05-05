@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author shaaf
+ * @author shaaf and ali
  */
 public class loginGUI extends javax.swing.JFrame {
     Connection con = null;
@@ -101,21 +101,15 @@ public class loginGUI extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(passField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(userField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(64, 64, 64))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))))
+                    .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(49, 49, 49))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,9 +122,9 @@ public class loginGUI extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(passField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(loginBtn)
-                .addContainerGap())
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jLabel4.setBackground(new java.awt.Color(216, 131, 184));
@@ -150,8 +144,8 @@ public class loginGUI extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83))))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61))))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,32 +196,32 @@ public class loginGUI extends javax.swing.JFrame {
                 System.out.println("hello");
                 
                 
-                if("Admin".equals(rs.getString("userType"))){
+                if("Admin".equals(rs.getString("userType"))){ // if retrieved user has userType Admin direct to adminPanel
                     System.out.println("admin");
                     adminGUI adminPanel = new adminGUI();
                     adminPanel.setVisible(true);
                     this.dispose();
                 
-                }else if("User".equals(rs.getString("userType"))){
+                }else if("User".equals(rs.getString("userType"))){// if retrieved user has userType User direct to userPanel
                 
                     System.out.println("user");
                     userGUI userPanel = new userGUI();
                     // add this user to the tempuser
                     try{
                         
-                        String sqlQuery = "INSERT INTO TempUser VALUES (null,?,?);";
+                        String sqlQuery = "INSERT INTO TempUser VALUES (null,?,?);";// Insert values into TempUser table
                         pst = con.prepareStatement(sqlQuery);
-                        pst.setString(1, userField.getText());
-                        pst.setString(2, rs.getString("user_ID"));
+                        pst.setString(1, userField.getText());// 1st index is username
+                        pst.setString(2, rs.getString("user_ID"));//2nd index is user id
                         pst.execute();
-                        System.out.println("Added to the tempUser table");
+                        System.out.println("Added to the tempUser table");// check if working
                         }catch(Exception e){
                            System.out.println(e);
                     }finally{
                 try{
-                    rs.close();
-                    pst.close();
-                    con.close();
+                    rs.close();//close returnsseet
+                    pst.close();//close prepared statement
+                    con.close();// close connection
                 } catch(Exception e){
                     }
                 }
@@ -237,7 +231,7 @@ public class loginGUI extends javax.swing.JFrame {
                 
             
             }else{
-            JOptionPane.showMessageDialog(null, "User or pass does not exist");
+            JOptionPane.showMessageDialog(null, "User or pass does not exist"); // if query failed user or password does not exist.
             
             }
             

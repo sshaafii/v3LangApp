@@ -31,7 +31,7 @@ public class adminGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        logOutBtn = new javax.swing.JButton();
         addLangBtn = new javax.swing.JButton();
         addStudentBtn = new javax.swing.JButton();
         showStudentBtn = new javax.swing.JButton();
@@ -77,11 +77,11 @@ public class adminGUI extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 230, 255));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/EXIT.png"))); // NOI18N
-        jButton1.setText("Log Out");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        logOutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/EXIT.png"))); // NOI18N
+        logOutBtn.setText("Log Out");
+        logOutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                logOutBtnActionPerformed(evt);
             }
         });
 
@@ -91,14 +91,14 @@ public class adminGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jButton1)
+                .addComponent(logOutBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(37, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(logOutBtn)
                 .addGap(29, 29, 29))
         );
 
@@ -206,9 +206,10 @@ public class adminGUI extends javax.swing.JFrame {
     private void addLangBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLangBtnActionPerformed
         // TODO add your handling code here:
         
-        addLanguageGUI addLang = new addLanguageGUI();
-        addLang.setVisible(true);
-        this.dispose();
+        addLanguageGUI addLang = new addLanguageGUI(); //create object of type addLanguageGUI
+        addLang.setVisible(true);   // set addLanguageGUI Jframe form to be visible. Frame will appear on screen
+        this.dispose();   // dispose of adminGUI Jframe.causes the JFrame window to be destroyed and cleaned up by the operating system
+        
     }//GEN-LAST:event_addLangBtnActionPerformed
 
     private void addStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentBtnActionPerformed
@@ -228,12 +229,12 @@ public class adminGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_showStudentBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         // TODO add your handling code here:
         loginGUI login = new loginGUI();
         login.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_logOutBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,7 +274,6 @@ public class adminGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addLangBtn;
     private javax.swing.JButton addStudentBtn;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -282,6 +282,7 @@ public class adminGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JButton logOutBtn;
     private javax.swing.JButton showStudentBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,6 +7,9 @@ package languageapp;
 /**
  *
  * @author shaaf
+ * Login as a user/student username: user password:1234
+ * Login as an admin with username:john password:NewCav
+ * 
  */
 public class LanguageApp {
 

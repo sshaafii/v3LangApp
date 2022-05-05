@@ -6,7 +6,7 @@ package languageapp;
 
 /**
  *
- * @author sh44fi
+ * @author shaaf
  */
 public class addLanguageGUI extends javax.swing.JFrame {
 

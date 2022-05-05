@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author sh44fi
+ * @author shaaf ahmad
  */
 public class showStudentGUI extends javax.swing.JFrame {
 
@@ -157,12 +157,12 @@ public class showStudentGUI extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-        String sql ="SELECT * from User ;";
+        String sql ="SELECT * from User ;"; //Select everything from User
         try {
             pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
             
-            while(rs.next()){
+            while(rs.next()){ //while loop will cycle through restult set until the end.
             //data will be added until results finish
                 String user_id = String.valueOf(rs.getInt("user_id"));
                 String userType = rs.getString("userType");
@@ -175,7 +175,7 @@ public class showStudentGUI extends javax.swing.JFrame {
                 String tbData[] = {user_id,userType,username,password,email,firstName,lastName};
                 DefaultTableModel tblModel = (DefaultTableModel)studentTable.getModel();
                 
-                //adds string arrat data into jtable
+                //adds string array data into jtable
                 
                 tblModel.addRow(tbData);
                 
